@@ -1,0 +1,26 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%
+Integer idUsuarioSesion = (Integer) session.getAttribute("idUsuario");
+List<String> rolesSesion = (List<String>) session.getAttribute("roles");
+String rolSesion = (String) session.getAttribute("rol");
+String ctx = request.getContextPath();
+
+if (idUsuarioSesion == null) {
+    response.sendRedirect(ctx + "/login.jsp?error=sesion");
+    return;
+}
+
+boolean autorizado = false;
+if (rolesPermitidos != null) {
+    for (String r : rolesPermitidos) {
+        boolean coincideRol = r.equals(rolSesion) || (rolesSesion != null && rolesSesion.contains(r));
+        if (coincideRol) { autorizado = true; break; }
+    }
+}
+
+if (!autorizado) {
+    response.sendRedirect(ctx + "/acceso-denegado.jsp");
+    return;
+}
+%>

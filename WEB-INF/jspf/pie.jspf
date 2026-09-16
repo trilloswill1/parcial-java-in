@@ -1,0 +1,13 @@
+<%@ page pageEncoding="UTF-8" %>
+</main>
+<footer class="site-footer text-center py-3">
+    <% if (session != null && session.getAttribute("idUsuario") != null) { %>
+    <div class="mb-2">
+        <a href="<%= request.getContextPath() %>/cerrar-sesion.jsp" class="btn btn-sm btn-outline-secondary">Cerrar sesión</a>
+    </div>
+    <% } %>
+    <small>InmoSantander &middot; Sistema JSP + MySQL &middot; Inmobiliaria</small>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
